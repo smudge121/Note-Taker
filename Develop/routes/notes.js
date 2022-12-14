@@ -40,4 +40,24 @@ fb.post('/', (req, res) => {
     }
 });
 
+fb.delete('/:id', (req, res) => {
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err){
+            console.error(err);
+            res.status(500).json('Error in deleting review');
+        } 
+        else
+        {
+            const notes = JSON.parse(data);
+            const filtered = notes.filter((note) => note.id != req.params.id);
+
+            fs.writeFile('./db/db.json',JSON.stringify(filtered, null, 4), (writeErr) => {
+                writeErr ? console.error(writeErr) : console.info('Successfully updated Notes!');
+            });
+            res.sendStatus(200);
+        }
+    })
+
+})
+
 module.exports = fb;

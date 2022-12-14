@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const api = require('./routes/routes');
 
-const PORT = 3001;
+const port = process.env.PORT || 3001
 
 const app = express();
 
@@ -22,6 +22,6 @@ app.get('*', (req,res) => {
 
 
 
-app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT} 🚀`)
+app.listen(port, () =>
+  console.log(`App listening at http://localhost:${port} 🚀`)
 );
