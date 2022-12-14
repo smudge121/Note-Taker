@@ -2,17 +2,14 @@ const fb = require('express').Router();
 const db = require('../db/db.json');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
-// uuidv4();  generate a new uuid
 
 fb.get('/', (req, res) => {
-    // console.info('Get Received');
-
-    res.json(db);
+    fs.readFile('./db/db.json','utf8', (err,data) => {
+        res.json(JSON.parse(data));
+    });
 });
 
 fb.post('/', (req, res) => {
-    console.info('Post Received');
-    // title, text, id
     const {title, text} = req.body;
 
     if (title && text)
@@ -36,7 +33,11 @@ fb.post('/', (req, res) => {
                 });
             }
         })
+        res.sendStatus(200);
     } 
+    else {
+        res.status(500).json('Error in posting review');
+    }
 });
 
 module.exports = fb;
