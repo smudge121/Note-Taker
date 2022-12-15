@@ -6,7 +6,7 @@ This project is a web based note taking app that allows the user to create, save
 
 ## Usage
 
-Visit the link here:
+Visit the link here: https://glacial-peak-93009.herokuapp.com/
 
 
 The user can then type into the fields to give their note a title, as well as a text body. Press the save icon at the top right to save the note. Selecting the note from the left hand column will allow the user to view and edit it in the right hand field.
